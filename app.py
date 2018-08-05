@@ -5,7 +5,7 @@ from persistence.create_db import create_db
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db/production.sqlite3'
 
 app.register_blueprint(api)
 init_db(app)
