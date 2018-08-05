@@ -2,6 +2,7 @@ from flask import Flask
 from blueprint.todo import api
 from persistence.create_engine import init_db
 from persistence.create_db import create_db
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
