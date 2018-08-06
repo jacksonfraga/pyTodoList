@@ -17,7 +17,6 @@ var app = new Vue({
             });
         },
         deleteTodo: function(todo) {
-            alert('/api/todo/'.concat(todo.todo_id))
             this.$http.delete('/api/todo/'.concat(todo.todo_id)).then(response => {
                 if (response.body.success) {
                     this.todos.splice(this.todos.indexOf(todo), 1)
