@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from blueprint.todo import api
 from persistence.create_engine import init_db
 from persistence.create_db import create_db
@@ -6,10 +6,17 @@ import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bbddd2acec8c7f:d38988f70b18b9e@us-cdbr-iron-east-01.cleardb.net/heroku_78038307a9708b3'
+app.config[
+    'SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://bbddd2acec8c7f:d38988f70b18b9e@us-cdbr-iron-east-01.cleardb.net/heroku_78038307a9708b3'
 
 app.register_blueprint(api)
 init_db(app)
+
+
+@app.route('/')
+def catch_all():
+    return render_template("index.html")
+
 
 if __name__ == '__main__':
     create_db()
