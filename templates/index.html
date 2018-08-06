@@ -2,29 +2,40 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>frontend</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Todo list</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="static/js/vue.js"></script>
     <script src="static/js/vue-resource.js"></script>
 </head>
 <body>
-<div id="app">
+<div class="container-fluid" id="app">
 
     <input class="add-todo" autofocus autocomplete="off" placeholder="Qual a sua tarefa?" v-model="todo" @keyup.enter="addTodo">
-    <ul class="todo-list">
-        <li class="todo" v-for="todo in todos"
-            :class="{completed: todo.done ==1}">
-            <div class="view">
-                <input class="toggle" type="checkbox" v-model="todo.done">
-                <label @dblclick="editTodo(todo)">{{todo.description}}</label>
-                <button class="destroy" @click="deleteTodo(todo)">Remover</button>
+
+    <div class="todo row flex-xl-nowrap" v-for="todo in todos" :class="{completed: todo.done ==1}">
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    <input class="toggle" type="checkbox" v-model="todo.done" @change="updateTodo(todo)">
+                </div>
             </div>
-        </li>
-    </ul>
-                <button @click="listAll">All</button>
-                <button @click="onlyDone">Done</button>
-                <button @click="onlyDoing">Doing</button>
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">{{todo.description}}</span>
+            </div>
+            <button class="btn btn-outline-danger" @click="deleteTodo(todo)">Remover</button>
+        </div>
+
+    </div>
+    <button class="btn btn-info btn-sm" @click="listAll" >All</button>
+    <button class="btn btn-success btn-sm" @click="onlyDone">Done</button>
+    <button class="btn btn-warning btn-sm" @click="onlyDoing">Doing</button>
 </div>
 
 <script src="static/js/app.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>

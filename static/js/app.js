@@ -16,6 +16,14 @@ var app = new Vue({
                 alert('erro ao gravar')
             });
         },
+        updateTodo: function(todo) {
+            index = this.todos.indexOf(todo)
+            this.$http.post('/api/todo/'.concat(todo.todo_id), todo).then(response => {
+                this.todos[index] = response.body
+            }, response => {
+                // error callback
+            });
+        },
         deleteTodo: function(todo) {
             this.$http.delete('/api/todo/'.concat(todo.todo_id)).then(response => {
                 if (response.body.success) {
@@ -58,20 +66,6 @@ var app = new Vue({
     },
     mounted: function(){
         this.listAll()
-    },
-    created (){
-        var vm = this;
-        this.$watch("todos", function (after, before) {
-            after.filter( function( p, idx ) {
-                return Object.keys(p).some( function( prop ) {
-                    var diff = p[prop] !== vm.cloneTodos[idx][prop];
-                    if(diff) {
-                        p.changed = true;
-                        vm.cloneTodos[idx][prop] = p[prop];
-                    }
-                })
-            });
-
-        }, {deep: true})
+        this.cloneTodos = this.todos
     }
 })
