@@ -2,7 +2,7 @@ from sqlalchemy import create_engine, Table, Column, Integer, String, Boolean, M
 
 
 def create_db():
-    db_uri = 'sqlite:///db/production.sqlite3'  # current_app.config['SQLALCHEMY_DATABASE_URI']
+    db_uri = 'mysql+pymysql://bbddd2acec8c7f:d38988f70b18b9e@us-cdbr-iron-east-01.cleardb.net/heroku_78038307a9708b3'  # current_app.config['SQLALCHEMY_DATABASE_URI']
     engine = create_engine(db_uri, echo=True)
     engine.connect()
 
