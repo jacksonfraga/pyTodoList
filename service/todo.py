@@ -15,7 +15,8 @@ class TodoService:
 
     def create(self, data):
         self.validate(data)
-        return TodoPersistence(self.app).create(data)
+        item = TodoPersistence(self.app).create(data)
+        return item
 
     def get_all(self):
         return TodoPersistence(self.app).get_all()

@@ -3,20 +3,28 @@
 <head>
     <meta charset="utf-8">
     <title>frontend</title>
-    <script src="https://unpkg.com/vue"></script>
+    <script src="static/js/vue.js"></script>
+    <script src="static/js/vue-resource.js"></script>
 </head>
 <body>
-<div id="app"> Jackson
-    {% raw %}{{message}}{% endraw %}
+<div id="app">
+
+    <input class="add-todo" autofocus autocomplete="off" placeholder="Qual a sua tarefa?" v-model="todo" @keyup.enter="addTodo">
+    <ul class="todo-list">
+        <li class="todo" v-for="todo in todos"
+            :class="{completed: todo.done ==1}">
+            <div class="view">
+                <input class="toggle" type="checkbox" v-model="todo.done">
+                <label @dblclick="editTodo(todo)">{{todo.description}}</label>
+                <button class="destroy" @click="deleteTodo(todo)">Remover</button>
+            </div>
+        </li>
+    </ul>
+                <button @click="listAll">All</button>
+                <button @click="onlyDone">Done</button>
+                <button @click="onlyDoing">Doing</button>
 </div>
 
-<script>
-  var app = new Vue({
-    el: '#app',
-    data: {
-        message: 'Hello Vue!'
-    }
-    })
-</script>
+<script src="static/js/app.js"></script>
 </body>
 </html>

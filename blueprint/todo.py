@@ -16,11 +16,13 @@ def get_all():
     # data = {'data': 'test oks'}
     return jsonify(todos=[d.to_dict() for d in data])
 
+
 @api.route('/done', methods=['GET'])
 def get_done():
     data = TodoService(current_app).get_done()
     # data = {'data': 'test oks'}
     return jsonify(todos=[d.to_dict() for d in data])
+
 
 @api.route('/doing', methods=['GET'])
 def get_doing():
